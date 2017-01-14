@@ -1,0 +1,109 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchTodo">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Node/Angular Todo App</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#todo-list 				{ margin-bottom:30px; }
+		#todo-form 	 			{ margin-bottom:50px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+	<div class="container">
+
+		<!-- HEADER AND TODO COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Training Day Labs <span class="label label-info">{{ todos.length }}</span></h1>
+		</div>
+
+		<!-- TODO LIST -->
+		<div id="todo-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				
+
+				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+				<div class="checkbox" ng-repeat="todo in todos">
+					<label>
+						<input type="checkbox" ng-click="deleteTodo(todo._id)"> <b>Lab Name:</b> {{ todo.labname }} <b>Architecture:</b> {{todo.labarch}} <b>Lab:</b> {{todo.labtype}}
+					</label>
+				</div>
+
+				<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+				</p>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE TODOS -->
+		<div id="todo-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						 <label for="labtype">Lab Type:</label>
+						 <select name="labtype" ng-model="formData.labtype" ng-selected="goldlabshow">
+                         <option value="goldlab">Gold Lab</option>
+  						 <option value="dcloud">Dcloud</option>
+						 </select>
+						 <select name="labarch" ng-model="formData.labarch">
+                         <option value="Enterprise Networks">Enterprise Networks</option>
+  						 <option value="Security">Security</option>
+						 <option value="Datacenter">DataCenter</option>
+						 <option value="Collaboration">Collaboration</option>
+						 <option value="Devnet">Devnet</option>
+						 </select>
+						 </select>
+						 <select name="labstatus" ng-model="formData.labstatus">
+                         <option value="Available">Available</option>
+  						 </select>
+						<input type="text" class="form-control input-lg text-center" placeholder="Lab Name Here" ng-model="formData.labname">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Gold Lab Class Name" ng-model="formData.goldclassname" ng-show="formData.labtype=='goldlab'">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Gold Lab Class URL" ng-model="formData.goldurl" ng-show="formData.labtype=='goldlab'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Total number of Pods" ng-model="formData.goldpods" ng-show="formData.labtype=='goldlab'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Session ID" ng-model="formData.dcloudid" ng-show="formData.labtype=='dcloud'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Username" ng-model="formData.dclouduser" ng-show="formData.labtype=='dcloud'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Password" ng-model="formData.dcloudpass" ng-show="formData.labtype=='dcloud'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud ASA URL" ng-model="formData.dcloudasa" ng-show="formData.labtype=='dcloud'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Public IP" ng-model="formData.dcloudpubip" ng-show="formData.labtype=='dcloud'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Guacamole/RDP URL" ng-model="formData.guacurl" ng-show="formData.labtype=='dcloud'">
+					</div>
+
+
+					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="text-center text-muted">
+			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
+			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
+		</div>
+
+	</div>
+
+</body>
+</html>

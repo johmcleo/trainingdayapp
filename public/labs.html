@@ -1,0 +1,117 @@
+
+<html ng-app="nctLab">
+<head>
+    <title>Training Day Labs</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body         { padding-top:80px; word-wrap:break-word; }
+    </style>
+
+<!-- SCRIPTS -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script><!-- load angular -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.js"></script>
+    
+   <!-- load angular -->
+
+	<script src="js/controllers/labsmain.js"></script> <!-- load up our controller -->
+	<script src="js/services/labs.js"></script> <!-- load our todo service -->
+	<script src="js/labscore.js"></script> <!-- load our main application -->
+
+</head>
+<body ng-controller="mainController">
+<div class="container">
+    <div class="page-header text-center">
+    <img src="../img/databear.jpg" height="200" width="300">
+    </div>
+    <div class="page-header text-center">
+        <h1><span class="fa fa-hashtag"></span> Training Day Labs</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+  <!-- My labs -->
+        <div class="col-sm-13">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> {{usercookie}} : My Labs<span class="label label-info">{{ labsbyuser.length }}</span></h3>
+                <h5>GOLD Labs:</h5>
+                <div class="checkbox" ng-repeat="labuser in labsbyuser | filter:{ labtype: 'goldlab' } as results">
+                    <b>Lab Name:</b> {{ labuser.labname }} <b>Architecture:</b> {{labuser.labarch}} <b>GOLD Lab Name:</b> {{labuser.goldclassname}} <b>GOLD Lab URL:</b> <a ng-href="{{labuser.goldurl}}">{{labuser.goldurl}}</a> 
+                   </div>
+                    <h5>Dcloud Labs:</h5>
+                <div class="checkbox" ng-repeat="labuser in labsbyuser | filter:{ labtype: 'dcloud' } as results">
+                    <b>Lab Name:</b> {{ labuser.labname }} <b>Architecture:</b> {{labuser.labarch}} <b>Dcloud Username:</b> {{labuser.dclouduser}} <b>Dcloud Password:</b> {{labuser.dcloudpass}} 
+                    <div>
+                    <b>Dcloud Anyconnect URL:</b> <a ng-href="{{labuser.dcloudasa}}">{{labuser.dcloudasa}}</a>
+                    <b>Lab Guide:</b> <a ng-href="{{labuser.dcloudguide}}">{{labuser.dcloudguide}}</a>       
+            </div>
+            </div>
+            </div>
+        </div>
+
+    <div class="row">
+      
+        <!-- Enterprise Labs -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-cogs"></span> Enterprise Networks</h3>
+
+                <div class="checkbox" ng-repeat="lab in labs | filter:{ labarch: 'Enterprise Networks' } as results"><span class="label label-info">{{results.length}}</span>
+                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
+            </div>
+        </div>
+        </div>
+        
+        <!-- Collaboration Labs -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-primary"><span class="fa fa-video-camera"></span> Collaboration</h3>   
+                <div class="checkbox" ng-repeat="lab in labs | filter:{ labarch: 'Collaboration' } as results"><span class="label label-info">{{results.length}}</span>
+                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
+            </div>
+            </div>
+        </div>
+    </div>
+  
+  <div class="row">
+        <!--Datacenter Labs -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-info"><span class="fa fa-server"></span> Datacenter</h3>
+
+                <div class="checkbox" ng-repeat="lab in uniquelabs">
+                    <input type="checkbox" ng-click="bookLab(usercookie,lab)"> <b>Lab Name:</b> {{ lab }}
+            </div>
+            </div>
+        </div>
+
+        <!-- Security Labs -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-danger"><span class="fa fa-lock"></span> Security</h3>
+
+                <div class="checkbox" ng-repeat="lab in labs | filter: { labarch: 'Security' }">
+                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
+            </div>
+
+            </div>
+        </div>
+    </div>
+ <div class="row">
+        <!-- Devnet Labs -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-primary"><span class="fa fa-code"></span> Devnet</h3>
+
+                <div class="checkbox" ng-repeat="lab in labs | filter: { labarch: 'Devnet' }">
+                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="text-center">
+        <p><a href="http://cs.co/trainingday">Cisco Norcal Territory - Training Day</a>.</p>
+</div>
+</body>
+</html>

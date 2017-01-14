@@ -4,7 +4,7 @@ angular.module('todoController', [])
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
 		$scope.loading = true;
-
+         
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
 		// use the service to get all the todos
@@ -20,7 +20,7 @@ angular.module('todoController', [])
 
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
-			if ($scope.formData.text != undefined) {
+			if ($scope.formData.labname != undefined) {
 				$scope.loading = true;
 
 				// call the create function from our service (returns a promise object)
