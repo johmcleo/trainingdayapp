@@ -35,6 +35,17 @@ function getLabsbyid(res,labid){
 		});
 };
 
+function getLabsbyarch(res,labarch){
+	Lab.find({labarch: labarch,labstatus: 'Booked'}, function(err, labs) {
+
+			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+			if (err)
+				res.send(err)
+
+			res.json(labs); // return all todos in JSON format
+		});
+};
+
 function getLabsgold(res){
 	
 	Lab.find({labtype: 'goldlab'}, function(err, labs) {
@@ -68,6 +79,11 @@ module.exports = function(app) {
 		// use mongoose to get all labs in the database
 		getLabs(res);
 	});
+
+app.get('/api/labs/:labarch', function(req, res) {
+			labarch = req.params.labarch
+			getLabsbyarch(res,labarch);
+		});
 
 	// api ---------------------------------------------------------------------
 	// get all labs
