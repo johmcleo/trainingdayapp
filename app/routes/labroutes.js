@@ -1,5 +1,6 @@
 var Lab = require('../models/todo');
-module.require('./passportroutes.js')
+module.require('./passportroutes.js');
+
 
 function getLabs(res){
 	Lab.find(function(err, labs) {
@@ -12,60 +13,27 @@ function getLabs(res){
 		});
 };
 
-function getuniqueLabs(res){
-	Lab.findOne().distinct('labname', function(err, labs) {
-
-			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
-			if (err)
-				res.send(err)
-
-			res.json(labs); // return all labs in JSON format
-		});
-};
-
-function getLabsbyid(res,labid){
-	
-	Lab.find({labuser: labuser}, function(err, labs) {
-
-			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
-			if (err)
-				res.send(err)
-
-			res.json(labs); // return all todos in JSON format
-		});
-};
-
 function getLabsbyarch(res,labarch){
 	Lab.find({labarch: labarch,labstatus: 'Booked'}, function(err, labs) {
-
-			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 			if (err)
 				res.send(err)
-
-			res.json(labs); // return all todos in JSON format
+			res.json(labs); 
 		});
 };
 
-function getLabsgold(res){
-	
-	Lab.find({labtype: 'goldlab'}, function(err, labs) {
-
-			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+function getLabsallbyarch(res,labarch){
+	Lab.find({labarch: labarch}, function(err, labs) {
 			if (err)
 				res.send(err)
-
-			res.json(labs); // return all todos in JSON format
+			res.json(labs); 
 		});
 };
 
-function getLabsdcloud(res){
-	
-	Lab.find({labtype: 'dcloud'}, function(err, labs) {
-
+function getLabsbyid(res,labuser){
+	Lab.find({labuser: labuser}, function(err, labs) {
 			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 			if (err)
 				res.send(err)
-
 			res.json(labs); // return all todos in JSON format
 		});
 };
@@ -80,9 +48,19 @@ module.exports = function(app) {
 		getLabs(res);
 	});
 
-app.get('/api/labs/:labarch', function(req, res) {
+	app.get('/api/labs/user/:labuser', function(req, res) {
+            labuser = req.params.labuser
+			getLabsbyid(res,labuser);
+	});
+
+app.get('/api/labs/arch/:labarch', function(req, res) {
 			labarch = req.params.labarch
 			getLabsbyarch(res,labarch);
+		});
+
+app.get('/api/labs/arch/all/:labarch', function(req, res) {
+			labarch = req.params.labarch
+			getLabsallbyarch(res,labarch);
 		});
 
 	// api ---------------------------------------------------------------------
@@ -93,30 +71,7 @@ app.get('/api/labs/:labarch', function(req, res) {
 		getuniqueLabs(res);
 	});
 
-// api ---------------------------------------------------------------------
-	// get all gold labs
-	app.get('/api/labs/gold', function(req, res) {
-
-		// use mongoose to get all labs in the database
-		getLabsgold(res);
-	});
-
-//api ---------------------------------------------------------------------
-	// get all dcloud labs
-	app.get('/api/labs/dcloud', function(req, res) {
-
-		// use mongoose to get all labs in the database
-		getLabsdcloud(res);
-	});
-
-// get labs by user
-
-app.get('/api/labs/:labuser', function(req, res) {
-            labuser = req.params.labuser
-			getLabsbyid(res,labuser);
-		});
-
-		// create todo and send back all todos after creation
+// create todo and send back all todos after creation
 app.post('/api/labs', function(req, res) {
 		// create a lab, information comes from AJAX request from Angular
 		Lab.create({

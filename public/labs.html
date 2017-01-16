@@ -11,6 +11,7 @@
 <!-- SCRIPTS -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script><!-- load angular -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.14/angular-filter.min.js"></script>
     
    <!-- load angular -->
 
@@ -55,7 +56,7 @@
             <div class="well">
                 <h3><span class="fa fa-cogs"></span> Enterprise Networks</h3>
 
-                <div class="checkbox" ng-repeat="lab in labs | filter:{ labarch: 'Enterprise Networks' } as results"><span class="label label-info">{{results.length}}</span>
+                <div class="checkbox" ng-repeat="lab in enlabs"><span class="label label-info">{{results.length}}</span>
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
         </div>
@@ -65,7 +66,7 @@
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-video-camera"></span> Collaboration</h3>   
-                <div class="checkbox" ng-repeat="lab in labs | filter:{ labarch: 'Collaboration' } as results"><span class="label label-info">{{results.length}}</span>
+                <div class="checkbox" ng-repeat="lab in collablabs"><span class="label label-info">{{results.length}}</span>
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
             </div>
@@ -78,8 +79,8 @@
             <div class="well">
                 <h3 class="text-info"><span class="fa fa-server"></span> Datacenter</h3>
 
-                <div class="checkbox" ng-repeat="lab in uniquelabs">
-                    <input type="checkbox" ng-click="bookLab(usercookie,lab)"> <b>Lab Name:</b> {{ lab }}
+                <div class="checkbox" ng-repeat="lab in dclabs | unique: 'labname'">
+                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }}
             </div>
             </div>
         </div>
@@ -89,7 +90,7 @@
             <div class="well">
                 <h3 class="text-danger"><span class="fa fa-lock"></span> Security</h3>
 
-                <div class="checkbox" ng-repeat="lab in labs | filter: { labarch: 'Security' }">
+                <div class="checkbox" ng-repeat="lab in seclabs">
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
 
@@ -102,13 +103,22 @@
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-code"></span> Devnet</h3>
 
-                <div class="checkbox" ng-repeat="lab in labs | filter: { labarch: 'Devnet' }">
+                <div class="checkbox" ng-repeat="lab in devnetlabs">
+                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
+            </div>
+            </div>
+        </div>
+ <!-- Meraki Labs -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-success"><span class="fa fa-cloud"></span> Meraki</h3>
+
+                <div class="checkbox" ng-repeat="lab in merakilabs">
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
             </div>
         </div>
     </div>
-
 
     <div class="text-center">
         <p><a href="http://cs.co/trainingday">Cisco Norcal Territory - Training Day</a>.</p>

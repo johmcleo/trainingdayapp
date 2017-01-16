@@ -1,7 +1,7 @@
-angular.module('labController', ['ngCookies'])
+angular.module('labController', ['ngCookies','angular.filter'])
 
 	// inject the Todo service factory into our controller
-	.controller('mainController', ['$scope','$http','$cookies','Labs', function($scope, $http, $cookies, Labs) {
+	.controller('mainController', ['$scope','$http','$cookies','$filter','Labs', function($scope, $http, $cookies,$filter, Labs) {
 		$scope.formData = {};
 		$scope.loading = true;
 		$scope.usercookie = $cookies.get('userid');
@@ -15,24 +15,46 @@ angular.module('labController', ['ngCookies'])
 				$scope.labsbyuser = data;
 		        $scope.loading = false;
 			});
-
-// GET UNIQUE =====================================================================
-		// when landing on the page, get all labs and show them
-		// use the service to get all the labs
-		Labs.getuniquelabs()
-			.success(function(data) {
-				$scope.uniquelabs = data;
-				$scope.loading = false;	
-			});
-
 		// GET =====================================================================
 		// when landing on the page, get all labs and show them
 		// use the service to get all the labs
-		Labs.get()
+//		Labs.get()
+//			.success(function(data) {
+//				$scope.labs = data;
+//				$scope.loading = false;	
+//			});
+
+
+		Labs.getbyarch('Enterprise Networks')
 			.success(function(data) {
-				$scope.labs = data;
+				$scope.enlabs = data;
 				$scope.loading = false;	
-			});
+			});	
+		Labs.getbyarch('Datacenter')
+			.success(function(data) {
+				$scope.dclabs = data;
+				$scope.loading = false;	
+			});	
+		Labs.getbyarch('Collaboration')
+			.success(function(data) {
+				$scope.collablabs = data;
+				$scope.loading = false;	
+			});	
+		Labs.getbyarch('Security')
+			.success(function(data) {
+				$scope.seclabs = data;
+				$scope.loading = false;	
+			});	
+		Labs.getbyarch('Devnet')
+			.success(function(data) {
+				$scope.devnetlabs = data;
+				$scope.loading = false;	
+			});	
+		Labs.getbyarch('Meraki')
+			.success(function(data) {
+				$scope.merakilabs = data;
+				$scope.loading = false;	
+			});	
 
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API
