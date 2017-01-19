@@ -99,10 +99,40 @@ angular.module('labController', ['ngCookies','angular.filter'])
 				// if successful creation, call our get function to get all the new todos
 				.success(function(data) {
 					$scope.loading = false;
-					$scope.labs = data; // assign our new list of todos
+					
 					Labs.getbyuser(labuser)
 			            .success(function(data) {
 				         $scope.labsbyuser = data;
+				   Labs.getbyarch('Enterprise Networks')
+			.success(function(data) {
+				$scope.enlabs = data;
+				$scope.loading = false;	
+			});	
+		Labs.getbyarch('Datacenter')
+			.success(function(data) {
+				$scope.dclabs = data;
+				$scope.loading = false;	
+			});	
+		Labs.getbyarch('Collaboration')
+			.success(function(data) {
+				$scope.collablabs = data;
+				$scope.loading = false;	
+			});	
+		Labs.getbyarch('Security')
+			.success(function(data) {
+				$scope.seclabs = data;
+				$scope.loading = false;	
+			});	
+		Labs.getbyarch('Devnet')
+			.success(function(data) {
+				$scope.devnetlabs = data;
+				$scope.loading = false;	
+			});	
+		Labs.getbyarch('Meraki')
+			.success(function(data) {
+				$scope.merakilabs = data;
+				$scope.loading = false;	
+			});	
 		                 $scope.loading = false;
 			});
 				});

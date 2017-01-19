@@ -43,7 +43,7 @@
                     <b>Lab Name:</b> {{ labuser.labname }} <b>Architecture:</b> {{labuser.labarch}} <b>Dcloud Username:</b> {{labuser.dclouduser}} <b>Dcloud Password:</b> {{labuser.dcloudpass}} 
                     <div>
                     <b>Dcloud Anyconnect URL:</b> <a ng-href="{{labuser.dcloudasa}}">{{labuser.dcloudasa}}</a>
-                    <b>Lab Guide:</b> <a ng-href="{{labuser.dcloudguide}}">{{labuser.dcloudguide}}</a>       
+                    <b>Lab Guide:</b> <a ng-href="{{labuser.labguide}}">{{labuser.labguide}}</a>       
             </div>
             </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="well">
                 <h3><span class="fa fa-cogs"></span> Enterprise Networks</h3>
 
-                <div class="checkbox" ng-repeat="lab in enlabs"><span class="label label-info">{{results.length}}</span>
+                <div class="checkbox" ng-repeat="lab in enlabs | unique: 'labname'"><span class="label label-info">{{results.length}}</span>
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
         </div>
@@ -66,7 +66,7 @@
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-video-camera"></span> Collaboration</h3>   
-                <div class="checkbox" ng-repeat="lab in collablabs"><span class="label label-info">{{results.length}}</span>
+                <div class="checkbox" ng-repeat="lab in collablabs | unique: 'labname'"><span class="label label-info">{{results.length}}</span>
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
             </div>
@@ -90,7 +90,7 @@
             <div class="well">
                 <h3 class="text-danger"><span class="fa fa-lock"></span> Security</h3>
 
-                <div class="checkbox" ng-repeat="lab in seclabs">
+                <div class="checkbox" ng-repeat="lab in seclabs | unique: 'labname'">
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
 
@@ -103,7 +103,7 @@
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-code"></span> Devnet</h3>
 
-                <div class="checkbox" ng-repeat="lab in devnetlabs">
+                <div class="checkbox" ng-repeat="lab in devnetlabs | unique: 'labname'">
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
             </div>
@@ -113,7 +113,7 @@
             <div class="well">
                 <h3 class="text-success"><span class="fa fa-cloud"></span> Meraki</h3>
 
-                <div class="checkbox" ng-repeat="lab in merakilabs">
+                <div class="checkbox" ng-repeat="lab in merakilabs | unique: 'labname'">
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
             </div>

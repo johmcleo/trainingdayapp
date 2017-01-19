@@ -22,6 +22,7 @@ var labSchema = new Schema({
   dcloudpubip: String,
   guacurl: String,
   goldpods: String,
+  labguide: String,
 });
 
 // the schema is useless so far

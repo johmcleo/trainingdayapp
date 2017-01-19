@@ -90,7 +90,8 @@ app.post('/api/labs', function(req, res) {
             dcloudpass: req.body.dcloudpass,
             dcloudasa: req.body.dcloudasa,
             dcloudpubip: req.body.dcloudpubip,
-            guacurl: req.body.guacurl,	
+            guacurl: req.body.guacurl,
+			labguide: req.body.labguide,	
 			done : false
 		}, function(err, Lab) {
 			if (err)

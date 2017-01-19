@@ -70,6 +70,7 @@
 						 </select>
 						 <select name="labarch" ng-model="formData.labarch">
                          <option value="Enterprise Networks">Enterprise Networks</option>
+						 <option value="Meraki">Meraki</option>
   						 <option value="Security">Security</option>
 						 <option value="Datacenter">DataCenter</option>
 						 <option value="Collaboration">Collaboration</option>
@@ -89,6 +90,7 @@
 						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud ASA URL" ng-model="formData.dcloudasa" ng-show="formData.labtype=='dcloud'">
 						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Public IP" ng-model="formData.dcloudpubip" ng-show="formData.labtype=='dcloud'">
 						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Guacamole/RDP URL" ng-model="formData.guacurl" ng-show="formData.labtype=='dcloud'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Lab Guide" ng-model="formData.labguide" ng-show="formData.labtype=='dcloud'">
 					</div>
 
 
