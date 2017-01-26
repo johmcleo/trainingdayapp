@@ -30,27 +30,27 @@ angular.module('labController', ['ngCookies','angular.filter'])
 				$scope.enlabs = data;
 				$scope.loading = false;	
 			});	
-		Labs.getbyarch('Datacenter')
+		Labs.getbyarch('Datacenter',labuser)
 			.success(function(data) {
 				$scope.dclabs = data;
 				$scope.loading = false;	
 			});	
-		Labs.getbyarch('Collaboration')
+		Labs.getbyarch('Collaboration',labuser)
 			.success(function(data) {
 				$scope.collablabs = data;
 				$scope.loading = false;	
 			});	
-		Labs.getbyarch('Security')
+		Labs.getbyarch('Security',labuser)
 			.success(function(data) {
 				$scope.seclabs = data;
 				$scope.loading = false;	
 			});	
-		Labs.getbyarch('Devnet')
+		Labs.getbyarch('Devnet',labuser)
 			.success(function(data) {
 				$scope.devnetlabs = data;
 				$scope.loading = false;	
 			});	
-		Labs.getbyarch('Meraki')
+		Labs.getbyarch('Meraki',labuser)
 			.success(function(data) {
 				$scope.merakilabs = data;
 				$scope.loading = false;	

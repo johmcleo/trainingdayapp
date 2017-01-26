@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var session      = require('express-session');
 var flash    = require('connect-flash');
+var _ = require('underscore');
 
 // configuration ===============================================================
 mongoose.connect(database.url); 	// connect to mongoDB database

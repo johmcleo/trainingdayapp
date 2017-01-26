@@ -13,8 +13,8 @@ angular.module('labService', [])
 			getbyuser : function(labuser) {
 				return $http.get('/api/labs/user/' + labuser);
 			},
-			getbyarch : function(labarch) {
-				return $http.get('/api/labs/arch/all/' + labarch);
+			getbyarch : function(labarch,labuser) {
+				return $http.get('/api/labs/arch/all/' + labarch + '/' + labuser);
 			},
 			create : function(labData) {
 				return $http.post('/api/labs', labData);

@@ -21,10 +21,11 @@ function getLabsbyarch(res,labarch){
 		});
 };
 
-function getLabsallbyarch(res,labarch){
-	Lab.find({labarch: labarch}, function(err, labs) {
+function getLabsallbyarch(res,labarch,labuser){
+	Lab.find({labarch: labarch,labstatus: 'Available'}, function(err, labs) {
 			if (err)
 				res.send(err)
+			console.log(labs)
 			res.json(labs); 
 		});
 };
@@ -58,9 +59,10 @@ app.get('/api/labs/arch/:labarch', function(req, res) {
 			getLabsbyarch(res,labarch);
 		});
 
-app.get('/api/labs/arch/all/:labarch', function(req, res) {
+app.get('/api/labs/arch/all/:labarch/:labuser', function(req, res) {
 			labarch = req.params.labarch
-			getLabsallbyarch(res,labarch);
+			labuser = req.params.labuser
+			getLabsallbyarch(res,labarch,labuser);
 		});
 
 	// api ---------------------------------------------------------------------

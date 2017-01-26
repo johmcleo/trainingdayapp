@@ -40,14 +40,13 @@
                 <h5>We have labs available spanning across all architectures. Please select a lab below and it will be added to your "My Labs" and you will recieve access information.
                     If you need any help getting started please ask a Cisco team member, we are here to help you! </h5>
                 <div> 
-                   <h5>Gold Labs: These labs do not require Anyconnect VPN and are good for end to end deployment of architectures.</h5>
+                   <h5>Gold Labs: These labs do not require VPN  </h5>
         
                    </div>
-                    <h5>Dcloud Labs: Dcloud labs are good for exploring advanced features of Cisco architectures. You will need to install the Anyconnect VPN Client to work with Dcloud. You need to use a Remote Desktop Client(RDP) to connect to the Dcloud Lab Workstation. All the tools for your lab are on this Workstation. </h5>
+                    <h5>Dcloud Labs: You will need to install the Anyconnect VPN Client to work with Dcloud. You need to use a Remote Desktop Client(RDP) to connect to the Dcloud Lab Workstation. All the tools for you lab are on this Workstation. </h5>
                 <div>
                     <h5>Please select labs that you intend to use, so that we have pods available for everyone.</h5>
-                    <h3><span class="fa fa-question-circle"></span><a href="/whichlab">Which lab should I do?</a></span></h3>
-                    <h3><span class="fa fa-chevron-circle-down"></span><a href="https://cisco.app.box.com/s/owz2abp8dzk5lspbej6mwr4b951js2m4">Download Anyconnect</a></span></h3>
+                    <h3><span class="fa fa-question-circle"></span><a href="/whichlab"> Which lab should I do?</a></span></h3>
                     <div>
             </div>
             </div>
@@ -65,7 +64,7 @@
                    </div>
                     <h5>Dcloud Labs:</h5>
                 <div class="checkbox" ng-repeat="labuser in labsbyuser | filter:{ labtype: 'dcloud' } as results">
-                    <b>Lab Name:</b> {{ labuser.labname }} Lab Session ID:</b> {{ labuser.dcloudid }} <b>Architecture:</b> {{labuser.labarch}} <b>Dcloud Username:</b> {{labuser.dclouduser}} <b>Dcloud Password:</b> {{labuser.dcloudpass}} 
+                    <b>Lab Name:</b> {{ labuser.labname }} <b>Architecture:</b> {{labuser.labarch}} <b>Dcloud Username:</b> {{labuser.dclouduser}} <b>Dcloud Password:</b> {{labuser.dcloudpass}} 
                     <div>
                     <b>Dcloud Anyconnect URL:</b> <a ng-href="{{labuser.dcloudasa}}">{{labuser.dcloudasa}}</a>
                     <b>Lab Guide:</b> <a ng-href="{{labuser.labguide}}">{{labuser.labguide}}</a>       
@@ -81,7 +80,7 @@
             <div class="well">
                 <h3><span class="fa fa-cogs"></span> Enterprise Networks</h3>
 
-                <div class="checkbox" ng-repeat="lab in enlabs | unique: 'labname'"></span>
+                <div class="checkbox" ng-repeat="lab in enlabs | unique: 'labname'"><span class="label label-info">{{results.length}}</span>
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
         </div>
@@ -91,7 +90,7 @@
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-video-camera"></span> Collaboration</h3>   
-                <div class="checkbox" ng-repeat="lab in collablabs | unique: 'labname'"></span>
+                <div class="checkbox" ng-repeat="lab in collablabs | unique: 'labname'"><span class="label label-info">{{results.length}}</span>
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
             </div>
