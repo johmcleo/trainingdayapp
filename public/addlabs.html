@@ -67,6 +67,7 @@
 						 <select name="labtype" ng-model="formData.labtype" ng-selected="goldlabshow">
                          <option value="goldlab">Gold Lab</option>
   						 <option value="dcloud">Dcloud</option>
+						 <option value="dcloudinstant">Dcloud Instant</option>
 						 </select>
 						 <select name="labarch" ng-model="formData.labarch">
                          <option value="Enterprise Networks">Enterprise Networks</option>
@@ -84,13 +85,13 @@
                         <input type="text" class="form-control input-lg text-center" placeholder="Gold Lab Class Name" ng-model="formData.goldclassname" ng-show="formData.labtype=='goldlab'">
                         <input type="text" class="form-control input-lg text-center" placeholder="Gold Lab Class URL" ng-model="formData.goldurl" ng-show="formData.labtype=='goldlab'">
 						<input type="text" class="form-control input-lg text-center" placeholder="Total number of Pods" ng-model="formData.goldpods" ng-show="formData.labtype=='goldlab'">
-						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Session ID" ng-model="formData.dcloudid" ng-show="formData.labtype=='dcloud'">
-						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Username" ng-model="formData.dclouduser" ng-show="formData.labtype=='dcloud'">
-						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Password" ng-model="formData.dcloudpass" ng-show="formData.labtype=='dcloud'">
-						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud ASA URL" ng-model="formData.dcloudasa" ng-show="formData.labtype=='dcloud'">
-						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Public IP" ng-model="formData.dcloudpubip" ng-show="formData.labtype=='dcloud'">
-						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Guacamole/RDP URL" ng-model="formData.guacurl" ng-show="formData.labtype=='dcloud'">
-						<input type="text" class="form-control input-lg text-center" placeholder="Lab Guide" ng-model="formData.labguide" ng-show="formData.labtype=='dcloud'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Session ID" ng-model="formData.dcloudid" ng-show="formData.labtype=='dcloud'|'dcloudinstant'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Username" ng-model="formData.dclouduser" ng-show="formData.labtype=='dcloud'|'dcloudinstant'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Password" ng-model="formData.dcloudpass" ng-show="formData.labtype=='dcloud'|'dcloudinstant'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud ASA URL" ng-model="formData.dcloudasa" ng-show="formData.labtype=='dcloud'|'dcloudinstant'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Public IP" ng-model="formData.dcloudpubip" ng-show="formData.labtype=='dcloud'|'dcloudinstant'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Dcloud Guacamole/RDP URL" ng-model="formData.guacurl" ng-show="formData.labtype=='dcloud'|'dcloudinstant'">
+						<input type="text" class="form-control input-lg text-center" placeholder="Lab Guide" ng-model="formData.labguide" ng-show="formData.labtype=='dcloud'|'dcloudinstant'">
 					</div>
 
 
