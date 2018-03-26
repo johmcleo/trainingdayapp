@@ -13,7 +13,7 @@ angular.module('labController', ['ngCookies','angular.filter'])
 		Labs.getbyuser(labuser)
 			.success(function(data) {
 				$scope.labsbyuser = data;
-		        $scope.loading = false;
+				$scope.loading = false;
 			});
 		// GET =====================================================================
 		// when landing on the page, get all labs and show them
@@ -33,7 +33,7 @@ angular.module('labController', ['ngCookies','angular.filter'])
 		Labs.getbyarch('Datacenter',labuser)
 			.success(function(data) {
 				$scope.dclabs = data;
-				$scope.loading = false;	
+				$scope.loading = false;
 			});	
 		Labs.getbyarch('Collaboration',labuser)
 			.success(function(data) {
@@ -94,16 +94,21 @@ angular.module('labController', ['ngCookies','angular.filter'])
 		// BOOK a lab after checking it
 		$scope.bookLab = function(labuser,labname) {
 			$scope.loading = true;
-
+			angular.forEach($scope.labsbyuser,function(value,index){
+				if(labname == value.labname){
+				 alert('Sorry you have aleady requested that lab');
+				 labname = 'null'
+				}
+			})
 			Labs.booklab(labuser,labname)
-				// if successful creation, call our get function to get all the new todos
+
+				// if successful creation, call our get function to get all the new labs
 				.success(function(data) {
 					$scope.loading = false;
-					
 					Labs.getbyuser(labuser)
 			            .success(function(data) {
-				         $scope.labsbyuser = data;
-				   Labs.getbyarch('Enterprise Networks')
+						 $scope.labsbyuser = data;
+		Labs.getbyarch('Enterprise Networks')
 			.success(function(data) {
 				$scope.enlabs = data;
 				$scope.loading = false;	

@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.14/angular-filter.min.js"></script>
     
    <!-- load angular -->
-
+   
 	<script src="js/controllers/labsmain.js"></script> <!-- load up our controller -->
 	<script src="js/services/labs.js"></script> <!-- load our todo service -->
 	<script src="js/labscore.js"></script> <!-- load our main application -->
@@ -47,7 +47,7 @@
                 <div>
                     <h5>Please select labs that you intend to use, so that we have pods available for everyone.</h5>
                     <h3><span class="fa fa-question-circle"></span><a href="/whichlab">Which lab should I do?</a></span></h3>
-                    <h3><span class="fa fa-chevron-circle-down"></span><a href="https://cisco.app.box.com/s/owz2abp8dzk5lspbej6mwr4b951js2m4">Download Anyconnect</a></span></h3>
+                    <h3><span class="fa fa-chevron-circle-down"></span><a href="https://cisco.app.box.com/s/owz2abp8dzk5lspbej6mwr4b951js2m4" target="_blank">Download Anyconnect</a></span></h3>
                     <div>
             </div>
             </div>
@@ -81,7 +81,7 @@
             <div class="well">
                 <h3><span class="fa fa-cogs"></span> Enterprise Networks</h3>
 
-                <div class="checkbox" ng-repeat="lab in enlabs | unique: 'labname'"></span>
+                <div class="checkbox" ng-show="lab.labname == labuser.labname" ng-repeat="lab in enlabs | unique: 'labname'"></span>
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
         </div>
@@ -103,7 +103,6 @@
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-info"><span class="fa fa-server"></span> Datacenter</h3>
-
                 <div class="checkbox" ng-repeat="lab in dclabs | unique: 'labname'">
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }}
             </div>

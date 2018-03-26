@@ -1,4 +1,5 @@
 var Lab = require('../models/todo');
+var LabMenu = require('../models/labmenu');
 module.require('./passportroutes.js');
 
 
@@ -22,10 +23,9 @@ function getLabsbyarch(res,labarch){
 };
 
 function getLabsallbyarch(res,labarch,labuser){
-	Lab.find({labarch: labarch,labstatus: 'Available'}, function(err, labs) {
+	Lab.find({labarch: labarch, labstatus: 'Available'}, function(err, labs) {
 			if (err)
 				res.send(err)
-			console.log(labs)
 			res.json(labs); 
 		});
 };
