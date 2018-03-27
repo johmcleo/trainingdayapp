@@ -3,7 +3,7 @@ FROM node
 RUN mkdir /opt/trainingdayapp
 WORKDIR /opt/trainingdayapp
 
-COPY ./* /opt/trainingdayapp/
+COPY . /opt/trainingdayapp/
 
 RUN npm install
 
