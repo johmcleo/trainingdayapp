@@ -80,8 +80,7 @@
         <div class="col-sm-6">
             <div class="well">
                 <h3><span class="fa fa-cogs"></span> Enterprise Networks</h3>
-
-                <div class="checkbox" ng-show="lab.labname == labuser.labname" ng-repeat="lab in enlabs | unique: 'labname'"></span>
+                <div class="checkbox" ng-repeat="lab in enlabs | unique: 'labname'"></span>
                     <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
             </div>
         </div>

@@ -2,7 +2,7 @@ var myApp = angular.module("myModule",[]);
 
 myApp.controller("myController",function($scope,$http,$interval){
     $scope.reload = function () {
-        $http.get('http://localhost:8080/api/labs').
+        $http.get('http://www.ciscotrainingday.io/api/labs').
             success(function (data) {
                 $scope.mydata = data;
             });
