@@ -39,15 +39,13 @@
                 <h5>Welcome to Cisco Training Day!</h5>
                 <h5>We have labs available spanning across all architectures. Please select a lab below and it will be added to your "My Labs" and you will recieve access information.
                     If you need any help getting started please ask a Cisco team member, we are here to help you! </h5>
-                <div> 
-                   <h5>Gold Labs: These labs do not require Anyconnect VPN and are good for end to end deployment of architectures.</h5>
-        
+                <div>         
                    </div>
                     <h5>Dcloud Labs: Dcloud labs are good for exploring advanced features of Cisco architectures. You will need to install the Anyconnect VPN Client to work with Dcloud. You need to use a Remote Desktop Client(RDP) to connect to the Dcloud Lab Workstation. All the tools for your lab are on this Workstation. </h5>
                 <div>
                     <h5>Please select labs that you intend to use, so that we have pods available for everyone.</h5>
-                    <h3><span class="fa fa-question-circle"></span><a href="/whichlab">Which lab should I do?</a></span></h3>
-                    <h3><span class="fa fa-chevron-circle-down"></span><a href="https://cisco.app.box.com/s/owz2abp8dzk5lspbej6mwr4b951js2m4" target="_blank">Download Anyconnect</a></span></h3>
+                    <h3><span class="fa fa-question-circle"></span><a href="http://cs.co/trainingdayhowto">How do I do labs?</a></span></h3>
+                    <h3><span class="fa fa-chevron-circle-down"></span><a href="https://cisco.box.com/s/dd0rosvtmrdv4dm4ekwq9kplrumj0s1w" target="_blank">Download Anyconnect</a></span></h3>
                     <div>
             </div>
             </div>
@@ -67,8 +65,9 @@
                 <div class="checkbox" ng-repeat="labuser in labsbyuser | filter:{ labtype: 'dcloud' } as results">
                     <b>Lab Name:</b> {{ labuser.labname }} Lab Session ID:</b> {{ labuser.dcloudid }} <b>Architecture:</b> {{labuser.labarch}} <b>Dcloud Username:</b> {{labuser.dclouduser}} <b>Dcloud Password:</b> {{labuser.dcloudpass}} 
                     <div>
-                    <b>Dcloud Anyconnect URL:</b> <a ng-href="{{labuser.dcloudasa}}">{{labuser.dcloudasa}}</a>
-                    <b>Lab Guide:</b> <a ng-href="{{labuser.labguide}}">{{labuser.labguide}}</a>       
+                    <b>Dcloud Anyconnect URL:</b>{{labuser.dcloudasa}}
+                    <b>Lab DNS/IP Assets:</b>{{labuser.dcloudpubip}}
+                    <b>Lab Guide:</b> <a ng-href="{{labuser.labguide}}" target="_blank">{{labuser.labguide}}</a>       
             </div>
             </div>
             </div>
@@ -81,7 +80,7 @@
             <div class="well">
                 <h3><span class="fa fa-cogs"></span> Enterprise Networks</h3>
                 <div class="checkbox" ng-repeat="lab in enlabs | unique: 'labname'"></span>
-                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
+                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }}
             </div>
         </div>
         </div>
@@ -91,7 +90,7 @@
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-video-camera"></span> Collaboration</h3>   
                 <div class="checkbox" ng-repeat="lab in collablabs | unique: 'labname'"></span>
-                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
+                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }}
             </div>
             </div>
         </div>
@@ -114,7 +113,7 @@
                 <h3 class="text-danger"><span class="fa fa-lock"></span> Security</h3>
 
                 <div class="checkbox" ng-repeat="lab in seclabs | unique: 'labname'">
-                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
+                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }}
             </div>
 
             </div>
@@ -127,7 +126,7 @@
                 <h3 class="text-primary"><span class="fa fa-code"></span> Devnet</h3>
 
                 <div class="checkbox" ng-repeat="lab in devnetlabs | unique: 'labname'">
-                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }} <b>Lab Type:</b> {{lab.labtype}}
+                    <input type="checkbox" ng-click="bookLab(usercookie,lab.labname)"> <b>Lab Name:</b> {{ lab.labname }}
             </div>
             </div>
         </div>
